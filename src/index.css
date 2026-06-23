@@ -5,38 +5,69 @@
 }
 
 :root {
-  --green-900: #14532d;
-  --green-800: #166534;
-  --green-700: #15803d;
-  --green-600: #16a34a;
-  --green-500: #22c55e;
-  --green-100: #dcfce7;
-  --green-50:  #f0fdf4;
+  /* Vibrant Greens - Growth & Success */
+  --green-900: #065f46;
+  --green-800: #047857;
+  --green-700: #059669;
+  --green-600: #10b981;
+  --green-500: #34d399;
+  --green-100: #d1fae5;
+  --green-50:  #ecfdf5;
 
-  --gold-500:  #eab308;
-  --gold-400:  #facc15;
-  --gold-100:  #fef9c3;
+  /* Bright Golds - Bursary & Achievement */
+  --gold-500:  #f59e0b;
+  --gold-400:  #fbbf24;
+  --gold-100:  #fef3c7;
 
-  --gray-900: #111827;
-  --gray-800: #1f2937;
-  --gray-700: #374151;
-  --gray-600: #4b5563;
-  --gray-500: #6b7280;
-  --gray-400: #9ca3af;
-  --gray-300: #d1d5db;
-  --gray-200: #e5e7eb;
-  --gray-100: #f3f4f6;
-  --gray-50:  #f9fafb;
+  /* Sunny Colors - Energy & Warmth */
+  --yellow-600: #eab308;
+  --yellow-500: #eab308;
+  --yellow-100: #fef9c3;
 
+  /* Warm Oranges - Action & Motivation */
+  --orange-600: #ea580c;
+  --orange-500: #f97316;
+  --orange-100: #fed7aa;
+
+  /* Vibrant Blues - Trust & Information */
+  --blue-700: #1d4ed8;
   --blue-600: #2563eb;
+  --blue-500: #3b82f6;
   --blue-100: #dbeafe;
 
-  --red-600:  #dc2626;
+  /* Coral Reds - Urgency & Alerts */
+  --red-600:  #ef4444;
+  --red-500:  #f87171;
   --red-100:  #fee2e2;
 
+  /* Amber - Warnings */
   --amber-600: #d97706;
+  --amber-500: #f59e0b;
   --amber-100: #fef3c7;
 
+  /* Purples - Premium & Special */
+  --purple-600: #9333ea;
+  --purple-500: #a855f7;
+  --purple-100: #f3e8ff;
+
+  /* Indigos - Professional */
+  --indigo-600: #4f46e5;
+  --indigo-500: #6366f1;
+  --indigo-100: #e0e7ff;
+
+  /* Clean Grays - Secondary Elements */
+  --gray-900: #0f172a;
+  --gray-800: #1e293b;
+  --gray-700: #334155;
+  --gray-600: #475569;
+  --gray-500: #64748b;
+  --gray-400: #cbd5e1;
+  --gray-300: #e2e8f0;
+  --gray-200: #f1f5f9;
+  --gray-100: #f8fafc;
+  --gray-50:  #f9fafb;
+
+  /* White & Utilities */
   --white: #ffffff;
   --radius-sm: 6px;
   --radius-md: 10px;

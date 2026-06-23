@@ -10,6 +10,8 @@ import Reminders from './pages/Reminders'
 import Profile from './pages/Profile'
 import CounsellorDashboard from './pages/CounsellorDashboard'
 import Learners from './pages/Learners'
+import Matches from './pages/Matches'
+import DHETAnalytics from './pages/DHETAnalytics'
 
 export default function App() {
   return (
@@ -27,6 +29,8 @@ export default function App() {
         {/* Counsellor role */}
         <Route path="/counsellor-dashboard" element={<CounsellorDashboard />} />
         <Route path="/learners" element={<Learners />} />
+        <Route path="/matches" element={<Matches />} />
+        <Route path="/dhet-analytics" element={<DHETAnalytics />} />
         <Route path="*" element={<Navigate to="/" replace />} />
       </Routes>
     </BrowserRouter>

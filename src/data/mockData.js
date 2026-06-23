@@ -418,3 +418,22 @@ export const counsellorStats = {
   needingAttention: 3,
   successfulOutcomes: 1,
 }
+export const dhetRegionalData = [
+  { province: 'Gauteng',       code: 'GP',  learnersRegistered: 145200, applicationsSubmitted: 42800, bursariesAccessed: 8400, tvetEnrolments: 12600, universityApplications: 21800 },
+  { province: 'KwaZulu-Natal', code: 'KZN', learnersRegistered: 132000, applicationsSubmitted: 31600, bursariesAccessed: 5900, tvetEnrolments: 11200, universityApplications: 14500 },
+  { province: 'Western Cape',  code: 'WC',  learnersRegistered: 89400,  applicationsSubmitted: 30200, bursariesAccessed: 6200, tvetEnrolments: 7800,  universityApplications: 16200 },
+  { province: 'Eastern Cape',  code: 'EC',  learnersRegistered: 98600,  applicationsSubmitted: 21400, bursariesAccessed: 4100, tvetEnrolments: 9400,  universityApplications: 7900  },
+  { province: 'Limpopo',       code: 'LP',  learnersRegistered: 87200,  applicationsSubmitted: 16800, bursariesAccessed: 3200, tvetEnrolments: 8600,  universityApplications: 5000  },
+  { province: 'Mpumalanga',    code: 'MP',  learnersRegistered: 62400,  applicationsSubmitted: 14200, bursariesAccessed: 2600, tvetEnrolments: 6200,  universityApplications: 5400  },
+  { province: 'North West',    code: 'NW',  learnersRegistered: 48800,  applicationsSubmitted: 11600, bursariesAccessed: 2100, tvetEnrolments: 4800,  universityApplications: 4700  },
+  { province: 'Free State',    code: 'FS',  learnersRegistered: 44200,  applicationsSubmitted: 12400, bursariesAccessed: 2400, tvetEnrolments: 4200,  universityApplications: 5800  },
+  { province: 'Northern Cape', code: 'NC',  learnersRegistered: 18600,  applicationsSubmitted: 3800,  bursariesAccessed: 720,  tvetEnrolments: 1800,  universityApplications: 1280  },
+]
+
+export const dhetNationalGoals = [
+  { id: 'ng1', label: 'Platform Registrations',    target: 800000, current: 726400, unit: 'learners',     icon: '👤', color: 'var(--green-600)', bg: 'var(--green-50)' },
+  { id: 'ng2', label: 'Applications Submitted',    target: 200000, current: 184800, unit: 'applications', icon: '📋', color: 'var(--blue-600)',  bg: 'var(--blue-100)' },
+  { id: 'ng3', label: 'Bursaries Accessed',        target: 40000,  current: 35620,  unit: 'learners',     icon: '🎓', color: 'var(--gold-500)', bg: 'var(--gold-100)' },
+  { id: 'ng4', label: 'TVET Enrolments Supported', target: 70000,  current: 66400,  unit: 'enrolments',   icon: '🔧', color: 'var(--amber-600)',bg: 'var(--amber-100)' },
+  { id: 'ng5', label: 'University Applications',   target: 100000, current: 82580,  unit: 'applications', icon: '🏛️', color: 'var(--gray-700)', bg: 'var(--gray-100)' },
+]
