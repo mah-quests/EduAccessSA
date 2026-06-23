@@ -8,6 +8,9 @@ import OpportunityDetail from './pages/OpportunityDetail'
 import Applications from './pages/Applications'
 import Reminders from './pages/Reminders'
 import Profile from './pages/Profile'
+import ParentDashboard from './pages/ParentDashboard'
+import AdminPortal from './pages/AdminPortal'
+import Analytics from './pages/Analytics'
 
 export default function App() {
   return (
@@ -22,6 +25,9 @@ export default function App() {
         <Route path="/applications" element={<Applications />} />
         <Route path="/reminders" element={<Reminders />} />
         <Route path="/profile" element={<Profile />} />
+        <Route path="/parent-dashboard" element={<ParentDashboard />} />
+        <Route path="/admin-portal" element={<AdminPortal />} />
+        <Route path="/analytics" element={<Analytics />} />
         <Route path="*" element={<Navigate to="/" replace />} />
       </Routes>
     </BrowserRouter>

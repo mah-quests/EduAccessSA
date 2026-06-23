@@ -9,6 +9,7 @@ export default function Navbar() {
     { to: '/discover', label: 'Discover', icon: '🔍' },
     { to: '/applications', label: 'Applications', icon: '📋' },
     { to: '/reminders', label: 'Reminders', icon: '🔔' },
+    { to: '/analytics', label: 'Analytics', icon: '📊' },
     { to: '/profile', label: 'Profile', icon: '👤' },
   ]
 

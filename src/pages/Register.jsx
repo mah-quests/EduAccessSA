@@ -7,17 +7,26 @@ import Card from '../components/ui/Card'
 const provinces = ['Gauteng','Western Cape','KwaZulu-Natal','Eastern Cape','Limpopo','Mpumalanga','North West','Free State','Northern Cape']
 const interests = ['Engineering','Technology','Medicine','Law','Business','Education','Science','Arts','Agriculture','Social Work','Architecture','Finance']
 
-const steps = ['Account', 'Profile', 'Interests']
+const accountTypes = [
+  { id: 'student', label: 'Student', icon: '👨‍🎓', desc: 'Find bursaries and opportunities' },
+  { id: 'parent', label: 'Parent/Guardian', icon: '👨‍👧', desc: 'Track your child\'s progress' },
+  { id: 'admin', label: 'Admin (Sponsor/Professor)', icon: '👔', desc: 'Manage bursaries' },
+]
 
 export default function Register() {
   const navigate = useNavigate()
   const [step, setStep] = useState(0)
   const [selected, setSelected] = useState([])
+  const [accountType, setAccountType] = useState('student')
   const [form, setForm] = useState({
     name: '', email: '', password: '',
     grade: '12', province: 'Gauteng', school: '',
     average: '', mathMark: '', scienceMark: '',
   })
+  
+  let steps = accountType === 'student' ? ['Account Type', 'Account', 'Profile', 'Interests'] : ['Account Type', 'Account']
+  if (accountType === 'parent') steps = ['Account Type', 'Account', 'Link Child']
+  if (accountType === 'admin') steps = ['Account Type', 'Account', 'Organization']
 
   const handle = e => setForm(f => ({ ...f, [e.target.name]: e.target.value }))
 
@@ -27,13 +36,17 @@ export default function Register() {
 
   const next = () => {
     if (step < steps.length - 1) setStep(s => s + 1)
-    else navigate('/dashboard')
+    else {
+      if (accountType === 'student') navigate('/dashboard')
+      else if (accountType === 'parent') navigate('/parent-dashboard')
+      else if (accountType === 'admin') navigate('/admin-portal')
+    }
   }
 
   return (
     <div style={{
       minHeight: '100vh',
-      background: 'linear-gradient(160deg, var(--green-900), var(--green-700))',
+      background: 'linear-gradient(160deg, var(--green-600), var(--green-700))',
       display: 'flex', alignItems: 'center', justifyContent: 'center',
       padding: 24,
     }}>
@@ -76,6 +89,44 @@ export default function Register() {
         <Card style={{ padding: 32 }}>
           {step === 0 && (
             <div style={{ display: 'flex', flexDirection: 'column', gap: 20 }}>
+              <h2 style={{ fontSize: 20, fontWeight: 700, color: 'var(--gray-900)' }}>What's your role?</h2>
+              <p style={{ fontSize: 14, color: 'var(--gray-500)', marginTop: -12 }}>
+                Choose how you'll use EduAccess SA
+              </p>
+              <div style={{ display: 'flex', flexDirection: 'column', gap: 12 }}>
+                {accountTypes.map(at => (
+                  <button
+                    key={at.id}
+                    onClick={() => setAccountType(at.id)}
+                    style={{
+                      padding: '16px 20px',
+                      borderRadius: 'var(--radius-md)',
+                      border: `2px solid ${accountType === at.id ? 'var(--green-600)' : 'var(--gray-200)'}`,
+                      background: accountType === at.id ? 'var(--green-50)' : '#fff',
+                      textAlign: 'left',
+                      cursor: 'pointer',
+                      transition: 'all .15s',
+                    }}
+                  >
+                    <div style={{ display: 'flex', alignItems: 'center', gap: 12 }}>
+                      <span style={{ fontSize: 24 }}>{at.icon}</span>
+                      <div>
+                        <p style={{ fontSize: 15, fontWeight: 700, color: accountType === at.id ? 'var(--green-800)' : 'var(--gray-900)' }}>
+                          {at.label}
+                        </p>
+                        <p style={{ fontSize: 13, color: accountType === at.id ? 'var(--green-700)' : 'var(--gray-600)' }}>
+                          {at.desc}
+                        </p>
+                      </div>
+                    </div>
+                  </button>
+                ))}
+              </div>
+            </div>
+          )}
+
+          {step === 1 && (
+            <div style={{ display: 'flex', flexDirection: 'column', gap: 20 }}>
               <h2 style={{ fontSize: 20, fontWeight: 700, color: 'var(--gray-900)' }}>Create your account</h2>
               <Input label="Full name" name="name" placeholder="Thabo Mokoena" value={form.name} onChange={handle} required />
               <Input label="Email address" type="email" name="email" placeholder="you@email.com" value={form.email} onChange={handle} required />
@@ -83,7 +134,7 @@ export default function Register() {
             </div>
           )}
 
-          {step === 1 && (
+          {step === 2 && accountType === 'student' && (
             <div style={{ display: 'flex', flexDirection: 'column', gap: 20 }}>
               <h2 style={{ fontSize: 20, fontWeight: 700, color: 'var(--gray-900)' }}>Your academic profile</h2>
               <p style={{ fontSize: 14, color: 'var(--gray-500)', marginTop: -12 }}>
@@ -109,7 +160,41 @@ export default function Register() {
             </div>
           )}
 
-          {step === 2 && (
+          {step === 2 && accountType === 'parent' && (
+            <div style={{ display: 'flex', flexDirection: 'column', gap: 20 }}>
+              <h2 style={{ fontSize: 20, fontWeight: 700, color: 'var(--gray-900)' }}>Link your child's profile</h2>
+              <p style={{ fontSize: 14, color: 'var(--gray-500)', marginTop: -12 }}>
+                Enter your child's email to start tracking their progress
+              </p>
+              <Input label="Child's email address" name="childEmail" type="email" placeholder="child@email.com" onChange={handle} />
+              <div style={{ background: 'var(--blue-50)', borderRadius: 'var(--radius-md)', padding: '12px 16px' }}>
+                <p style={{ fontSize: 13, color: 'var(--blue-800)' }}>
+                  💡 Your child will need to accept your link to grant you access to their profile.
+                </p>
+              </div>
+            </div>
+          )}
+
+          {step === 2 && accountType === 'admin' && (
+            <div style={{ display: 'flex', flexDirection: 'column', gap: 20 }}>
+              <h2 style={{ fontSize: 20, fontWeight: 700, color: 'var(--gray-900)' }}>Your organization</h2>
+              <p style={{ fontSize: 14, color: 'var(--gray-500)', marginTop: -12 }}>
+                Tell us about your organization
+              </p>
+              <Input label="Organization name" name="orgName" placeholder="e.g. Sasol, University of the Witwatersrand" onChange={handle} />
+              <Input label="Your position" name="position" placeholder="e.g. Bursary Manager, HR Manager" onChange={handle} />
+              <Input label="Organization type" name="orgType" as="select" onChange={handle}>
+                <option value="">Select type...</option>
+                <option value="Corporate">Corporate</option>
+                <option value="University">University</option>
+                <option value="TVET">TVET College</option>
+                <option value="NGO">NGO</option>
+                <option value="Government">Government</option>
+              </Input>
+            </div>
+          )}
+
+          {step === 3 && accountType === 'student' && (
             <div style={{ display: 'flex', flexDirection: 'column', gap: 20 }}>
               <h2 style={{ fontSize: 20, fontWeight: 700, color: 'var(--gray-900)' }}>What are you interested in?</h2>
               <p style={{ fontSize: 14, color: 'var(--gray-500)', marginTop: -12 }}>
@@ -151,7 +236,7 @@ export default function Register() {
               : <div />
             }
             <Button variant="primary" onClick={next}>
-              {step < steps.length - 1 ? 'Continue →' : '🚀 Find My Opportunities'}
+              {step < steps.length - 1 ? 'Continue →' : accountType === 'student' ? '🚀 Find My Opportunities' : accountType === 'parent' ? '👁️ View Child\'s Progress' : '📋 Manage Bursaries'}
             </Button>
           </div>
         </Card>
