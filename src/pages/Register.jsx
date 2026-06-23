@@ -36,11 +36,24 @@ export default function Register() {
 
   const next = () => {
     if (step < steps.length - 1) setStep(s => s + 1)
+<<<<<<< HEAD
     else {
       if (accountType === 'student') navigate('/dashboard')
       else if (accountType === 'parent') navigate('/parent-dashboard')
       else if (accountType === 'admin') navigate('/admin-portal')
     }
+=======
+    else navigate('/matches', {
+      state: {
+        user: {
+          name: form.name || 'Student',
+          averageMark: Number(form.average) || 72,
+          province: form.province || 'Gauteng',
+          interests: selected.length > 0 ? selected : ['Engineering'],
+        }
+      }
+    })
+>>>>>>> 370459a127b4e7485887a94d09135ac3a1b69039
   }
 
   return (
