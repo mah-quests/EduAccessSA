@@ -27,7 +27,16 @@ export default function Register() {
 
   const next = () => {
     if (step < steps.length - 1) setStep(s => s + 1)
-    else navigate('/dashboard')
+    else navigate('/matches', {
+      state: {
+        user: {
+          name: form.name || 'Student',
+          averageMark: Number(form.average) || 72,
+          province: form.province || 'Gauteng',
+          interests: selected.length > 0 ? selected : ['Engineering'],
+        }
+      }
+    })
   }
 
   return (

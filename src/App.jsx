@@ -8,6 +8,7 @@ import OpportunityDetail from './pages/OpportunityDetail'
 import Applications from './pages/Applications'
 import Reminders from './pages/Reminders'
 import Profile from './pages/Profile'
+import Matches from './pages/Matches'
 
 export default function App() {
   return (
@@ -22,6 +23,7 @@ export default function App() {
         <Route path="/applications" element={<Applications />} />
         <Route path="/reminders" element={<Reminders />} />
         <Route path="/profile" element={<Profile />} />
+        <Route path="/matches" element={<Matches />} />
         <Route path="*" element={<Navigate to="/" replace />} />
       </Routes>
     </BrowserRouter>

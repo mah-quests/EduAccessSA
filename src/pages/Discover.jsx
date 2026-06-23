@@ -5,7 +5,8 @@ import Card from '../components/ui/Card'
 import Badge from '../components/ui/Badge'
 import Button from '../components/ui/Button'
 import Input from '../components/ui/Input'
-import { opportunities } from '../data/mockData'
+import { opportunities, currentUser } from '../data/mockData'
+import { matchOpportunities } from '../utils/matching'
 
 const typeColors = { Bursary: 'green', University: 'blue', TVET: 'amber' }
 const statusColors = { Open: 'green', 'Closing Soon': 'red' }
@@ -13,6 +14,7 @@ const statusColors = { Open: 'green', 'Closing Soon': 'red' }
 const daysUntil = deadline => Math.ceil((new Date(deadline) - new Date()) / 86400000)
 
 export default function Discover() {
+  const allOpportunities = matchOpportunities(currentUser, opportunities)
   const navigate = useNavigate()
   const [search, setSearch] = useState('')
   const [typeFilter, setTypeFilter] = useState('All')
@@ -21,7 +23,7 @@ export default function Discover() {
 
   const types = ['All', 'Bursary', 'University', 'TVET']
 
-  const filtered = opportunities.filter(o => {
+  const filtered = allOpportunities.filter(o => {
     const q = search.toLowerCase()
     const matchSearch = !q || o.title.toLowerCase().includes(q) || o.provider.toLowerCase().includes(q) || o.fields.some(f => f.toLowerCase().includes(q))
     const matchType = typeFilter === 'All' || o.type === typeFilter
@@ -129,9 +131,20 @@ export default function Discover() {
                 {opp.description.slice(0, 110)}...
               </p>
 
-              <div style={{ display: 'flex', flexWrap: 'wrap', gap: 6, marginBottom: 16 }}>
+              <div style={{ display: 'flex', flexWrap: 'wrap', gap: 6, marginBottom: 12 }}>
                 {opp.tags.map(tag => <Badge key={tag} variant="gray">{tag}</Badge>)}
               </div>
+
+              {opp.matched && opp.matchReasons?.length > 0 && (
+                <div style={{ background: 'var(--green-50)', borderRadius: 8, padding: '8px 12px', marginBottom: 12 }}>
+                  <p style={{ fontSize: 11, fontWeight: 700, color: 'var(--green-800)', marginBottom: 4 }}>Why you match:</p>
+                  {opp.matchReasons.map((r, i) => (
+                    <p key={i} style={{ fontSize: 12, color: 'var(--green-700)', display: 'flex', gap: 6 }}>
+                      <span>✓</span><span>{r}</span>
+                    </p>
+                  ))}
+                </div>
+              )}
 
               <div style={{
                 display: 'flex', justifyContent: 'space-between', alignItems: 'center',

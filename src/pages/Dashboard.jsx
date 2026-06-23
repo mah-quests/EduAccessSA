@@ -4,6 +4,7 @@ import Card from '../components/ui/Card'
 import Badge from '../components/ui/Badge'
 import Button from '../components/ui/Button'
 import { currentUser, opportunities, applications, reminders, stats } from '../data/mockData'
+import { matchOpportunities } from '../utils/matching'
 
 const statusColor = {
   'Saved': 'gray',
@@ -22,7 +23,7 @@ const urgencyColor = deadline => {
 
 export default function Dashboard() {
   const navigate = useNavigate()
-  const matched = opportunities.filter(o => o.matched).slice(0, 3)
+  const matched = matchOpportunities(currentUser, opportunities).filter(o => o.matched).slice(0, 3)
   const recentApps = applications.slice(0, 4)
   const urgentReminders = reminders.filter(r => r.priority === 'Urgent' || r.priority === 'High').slice(0, 3)
 
