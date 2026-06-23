@@ -10,6 +10,7 @@ export default function Navbar() {
     { to: '/applications', label: 'Applications', icon: '📋' },
     { to: '/reminders', label: 'Reminders', icon: '🔔' },
     { to: '/profile', label: 'Profile', icon: '👤' },
+    { to: '/dhet-analytics', label: 'Analytics', icon: '📊', dhet: true },
   ]
 
   return (
@@ -52,25 +53,35 @@ export default function Navbar() {
 
         {/* Nav links */}
         <nav style={{ display: 'flex', alignItems: 'center', gap: 4 }}>
-          {links.map(link => {
+          {links.map((link, i) => {
             const active = location.pathname === link.to
+            const prevIsDhet = i > 0 && links[i - 1].dhet
+            const isDhet = !!link.dhet
             return (
-              <Link
-                key={link.to}
-                to={link.to}
-                style={{
-                  display: 'flex', alignItems: 'center', gap: 6,
-                  padding: '6px 14px',
-                  borderRadius: 'var(--radius-md)',
-                  fontSize: 14, fontWeight: 600,
-                  color: active ? 'var(--green-700)' : 'var(--gray-600)',
-                  background: active ? 'var(--green-50)' : 'transparent',
-                  transition: 'background .15s, color .15s',
-                }}
-              >
-                <span style={{ fontSize: 15 }}>{link.icon}</span>
-                <span className="nav-label">{link.label}</span>
-              </Link>
+              <div key={link.to} style={{ display: 'flex', alignItems: 'center', gap: 4 }}>
+                {isDhet && (
+                  <div style={{ width: 1, height: 20, background: 'var(--gray-200)', margin: '0 4px' }} />
+                )}
+                <Link
+                  to={link.to}
+                  style={{
+                    display: 'flex', alignItems: 'center', gap: 6,
+                    padding: '6px 14px',
+                    borderRadius: 'var(--radius-md)',
+                    fontSize: 14, fontWeight: 600,
+                    color: active
+                      ? (isDhet ? 'var(--gold-500)' : 'var(--green-700)')
+                      : 'var(--gray-600)',
+                    background: active
+                      ? (isDhet ? 'var(--gold-100)' : 'var(--green-50)')
+                      : 'transparent',
+                    transition: 'background .15s, color .15s',
+                  }}
+                >
+                  <span style={{ fontSize: 15 }}>{link.icon}</span>
+                  <span className="nav-label">{link.label}</span>
+                </Link>
+              </div>
             )
           })}
         </nav>
