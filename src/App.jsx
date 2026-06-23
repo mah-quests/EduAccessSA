@@ -8,6 +8,7 @@ import OpportunityDetail from './pages/OpportunityDetail'
 import Applications from './pages/Applications'
 import Reminders from './pages/Reminders'
 import Profile from './pages/Profile'
+import DHETAnalytics from './pages/DHETAnalytics'
 
 export default function App() {
   return (
@@ -22,6 +23,7 @@ export default function App() {
         <Route path="/applications" element={<Applications />} />
         <Route path="/reminders" element={<Reminders />} />
         <Route path="/profile" element={<Profile />} />
+        <Route path="/dhet-analytics" element={<DHETAnalytics />} />
         <Route path="*" element={<Navigate to="/" replace />} />
       </Routes>
     </BrowserRouter>
