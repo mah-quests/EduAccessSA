@@ -8,6 +8,8 @@ import OpportunityDetail from './pages/OpportunityDetail'
 import Applications from './pages/Applications'
 import Reminders from './pages/Reminders'
 import Profile from './pages/Profile'
+import CounsellorDashboard from './pages/CounsellorDashboard'
+import Learners from './pages/Learners'
 
 export default function App() {
   return (
@@ -22,6 +24,9 @@ export default function App() {
         <Route path="/applications" element={<Applications />} />
         <Route path="/reminders" element={<Reminders />} />
         <Route path="/profile" element={<Profile />} />
+        {/* Counsellor role */}
+        <Route path="/counsellor-dashboard" element={<CounsellorDashboard />} />
+        <Route path="/learners" element={<Learners />} />
         <Route path="*" element={<Navigate to="/" replace />} />
       </Routes>
     </BrowserRouter>
